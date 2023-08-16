@@ -9,7 +9,8 @@ const Router = {
 				Router.go(path);
 			});
 		});
-		console.log(location.pathname);
+		// console.log(location.pathname);
+		if (location.pathname === '/') Router.go('/');
 
 		window.addEventListener('popstate', (_) => {
 			const path = location.pathname;
@@ -20,10 +21,10 @@ const Router = {
 		if (addToHistory) history.pushState(path, '_', path);
 		switch (path) {
 			case '/':
-				this.element.innerHTML = '<h1>This is Home</h1>';
+				this.element.innerHTML = '<menu-page></menu-page>';
 				break;
 			case '/order':
-				this.element.innerHTML = '<h1>This is Order</h1>';
+				this.element.innerHTML = '<order-page>  </order-page>';
 				break;
 			default:
 				console.log('default route');
