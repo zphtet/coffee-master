@@ -2,13 +2,17 @@ const Router = {
 	element: document.querySelector('main'),
 	init: () => {
 		const links = Array.from(document.querySelectorAll('a.navlink'));
-		links.forEach((link) => {
+		const coffeeLinks = Array.from(document.querySelectorAll('.coffee > a'));
+		// console.log(coffeeLinks);
+		const AllLinks = [...links, ...coffeeLinks];
+		AllLinks.forEach((link) => {
 			link.addEventListener('click', function (e) {
 				e.preventDefault();
 				const path = this.getAttribute('href');
 				Router.go(path);
 			});
 		});
+
 		// console.log(location.pathname);
 		if (location.pathname === '/') Router.go('/');
 
@@ -26,7 +30,11 @@ const Router = {
 			case '/order':
 				this.element.innerHTML = '<order-page>  </order-page>';
 				break;
+
 			default:
+				if (path.startsWith('product')) {
+					this.element.innerHTML = '<detail-page> </detail-page>';
+				}
 				console.log('default route');
 		}
 	},

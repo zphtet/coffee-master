@@ -8,10 +8,12 @@ import OrderPage from './components/orderpage.js';
 
 window.app = {};
 app.store = Store;
+app.store.router = Router;
 
 window.addEventListener('DOMContentLoaded', async function () {
 	console.log(window);
 	console.log('DOM Content Loaded');
 	app.store.menu = await loadMenu();
 	Router.init();
+	// window.addEventListener('menuchange', () => this.alert('Hello menu change'));
 });

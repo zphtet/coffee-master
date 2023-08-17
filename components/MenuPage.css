@@ -1,4 +1,4 @@
-ul {
+/* ul {
     list-style: none;
     padding: 0;
 }
@@ -66,4 +66,55 @@ h4 {
 .price {
     margin: 0px 0 0px 12px;
     color: #B08968
+} */
+
+
+ul{
+    list-style: none;
+}
+section {
+     background-color: rgb(245, 240, 233);
+     /* border: 2px solid red; */
+     padding: 20px;
+}
+ul{
+  padding-inline-start: 0px !important;
+}
+ul li {
+    /* border: 1px solid blue; */
+    padding : 10px
+}
+ a {
+    display: block;
+    padding: 20px;
+    border: 2px solid #505a38;
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+}
+ .flex {
+    display: flex;
+    
+    align-items: center;
+    gap: 40px;
+}
+button {
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+    border-radius: 100max;
+    background-color: aquamarine;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+h2{
+    margin-bottom: 20px;
+    text-decoration: underline;
+    /* color: crimson !important; */
+}
+
+.coffee {
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
 }
