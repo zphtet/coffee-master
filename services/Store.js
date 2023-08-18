@@ -6,10 +6,12 @@ const Store = {
 const handler = {
 	set(target, prop, value) {
 		target[prop] = value;
+		// console.log(prop);
 		if (prop === 'menu') {
 			window.dispatchEvent(new Event('menuchange'));
 		}
 		if (prop === 'cart') {
+			// console.log('i am from proxy');
 			window.dispatchEvent(new Event('cartchange'));
 		}
 		return true;

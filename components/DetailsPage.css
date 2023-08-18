@@ -1,4 +1,4 @@
-button {
+button , a{
     display: block;
     background-color: var(--color5);
     border: 0;
@@ -8,6 +8,7 @@ button {
     border-radius: 40px;
     color: var(--color3);
     font-size: 16px;
+    cursor: pointer;
 }
 
 header {
@@ -15,7 +16,7 @@ header {
     flex-direction: row;
 }
 
-header>a {
+a {
     display: block;
     flex: 1;
     text-decoration: none;
@@ -51,4 +52,5 @@ img {
     color: var(--secondaryColor);
     padding: 0 24px;
 }
+
 

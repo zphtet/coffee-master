@@ -1,4 +1,7 @@
 import fetchCss from '../utils/fetchCss.js';
+import { addToCart } from '../utils/cartfun.js';
+
+import proxiedStore from '../services/Store.js';
 class DetailPage extends HTMLElement {
 	constructor() {
 		super();
@@ -18,11 +21,42 @@ class DetailPage extends HTMLElement {
 		// const child = tmpl.content.cloneNode(true);
 		// this.root.appendChild(child);
 		this.render();
+		// window.addEventListener('cartchange', () => {
+		// 	console.log('cart change handler');
+		// });
 	}
 	render() {
-		const h2 = document.createElement('h2');
-		h2.textContent = 'This is Detail Page';
-		this.root.appendChild(h2);
+		const pathname = location.pathname;
+		const indx = pathname.lastIndexOf('-') + 1;
+		const itemId = +pathname.slice(indx);
+		const item = app.store.menu[0].products.find(
+			(coffee) => coffee.id === itemId
+		);
+
+		const { description, name, price, image } = item;
+		const div = document.createElement('div');
+		div.innerHTML = `
+		<a href='/'>Back </a>
+		<img src="data/images/${image}" alt="coffee image">
+		<p class="price">${price}$</p>
+		<h2> ${name}</h2>
+		<p class="description">${description}</p>
+		 <button>Add to Cart </button>
+		`;
+
+		this.root.appendChild(div);
+
+		this.root.querySelector('a').addEventListener('click', function (e) {
+			e.preventDefault();
+			const path = this.getAttribute('href');
+			app.store.router.go(path);
+		});
+
+		this.root.querySelector('button').addEventListener('click', function (e) {
+			let tempCart = [...app.store.cart] || [];
+			let resultArr = addToCart(tempCart, itemId);
+			app.store.cart = resultArr;
+		});
 	}
 }
 

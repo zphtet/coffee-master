@@ -1,6 +1,9 @@
 const Router = {
 	element: document.querySelector('main'),
 	init: () => {
+		if (location.pathname === '/' || Location.pathname === '/index.html')
+			Router.go('/');
+
 		const links = Array.from(document.querySelectorAll('a.navlink'));
 		const coffeeLinks = Array.from(document.querySelectorAll('.coffee > a'));
 		// console.log(coffeeLinks);
@@ -14,7 +17,6 @@ const Router = {
 		});
 
 		// console.log(location.pathname);
-		if (location.pathname === '/') Router.go('/');
 
 		window.addEventListener('popstate', (_) => {
 			const path = location.pathname;
@@ -35,7 +37,7 @@ const Router = {
 				if (path.startsWith('product')) {
 					this.element.innerHTML = '<detail-page> </detail-page>';
 				}
-				console.log('default route');
+			// console.log('default route');
 		}
 	},
 };

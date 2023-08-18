@@ -1,4 +1,5 @@
 import fetchCss from '../utils/fetchCss.js';
+import { addToCart } from '../utils/cartfun.js';
 class MenuPage extends HTMLElement {
 	menuStore = window.app.store.menu;
 	constructor() {
@@ -22,12 +23,10 @@ class MenuPage extends HTMLElement {
 	}
 	render() {
 		// const tmpl = document.getElementById('menu-page-template');
-		console.log(this.menuStore);
-		if (!this.menuStore) {
+		// console.log(this.menuStore);
+		if (this.menuStore) {
 			// this.root.innerHTML = '<h2> Loading ....  </h2>';
-		} else {
 			// this.root.innerHTML = '<h2> Menu Page</h2>';
-
 			this.menuStore[0].products.forEach(({ price, image, name, id }) => {
 				const div = document.createElement('div');
 				div.className = 'coffee';
@@ -38,7 +37,7 @@ class MenuPage extends HTMLElement {
 					<img src='./data/images/${image}' alt="coffee1" />
 					<div class="flex">
 						<p>${price} $</p>
-						<button>Add</button>
+						<button data-id=${id}>Add</button>
 					</div>
 				</a>
 			`;
@@ -46,7 +45,7 @@ class MenuPage extends HTMLElement {
 			});
 
 			const coffeeLinks = Array.from(this.root.querySelectorAll('.coffee > a'));
-			console.log(coffeeLinks);
+			// console.log(coffeeLinks);
 			coffeeLinks.forEach((link) => {
 				link.addEventListener('click', function (e) {
 					e.preventDefault();
@@ -54,15 +53,18 @@ class MenuPage extends HTMLElement {
 					app.store.router.go(path);
 				});
 			});
-			// this.root.innerHTML += html;
+
+			const buttonArr = this.root.querySelectorAll('button');
+			buttonArr.forEach((button) => {
+				button.addEventListener('click', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					let tempCart = [...app.store.cart] || [];
+					let resultArr = addToCart(tempCart, +this.dataset.id);
+					app.store.cart = resultArr;
+				});
+			});
 		}
-		// const parentDOM = document.querySelector('menu-page');
-
-		// console.log(parentDOM);
-
-		// tmpl.innerHTML = `<h2> Hello This is Menu </h2>`;
-
-		// this.root.appendChild(tmpl);
 	}
 }
 
