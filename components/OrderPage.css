@@ -20,6 +20,7 @@ button {
     border-radius: 40px;
     color: var(--color3);
     font-size: 16px;
+    cursor: pointer;
 }
 
 h2 {
@@ -112,4 +113,14 @@ input {
     font-size: large;
     border: 1px solid var(--color3);
     border-radius: 15px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content:space-between ;
+}
+.d{
+    cursor: pointer;
+    max-width: 80px;
 }
